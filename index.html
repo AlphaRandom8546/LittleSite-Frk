@@ -5,8 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,
         initial-scale=1.0">
-        <title>我喜欢你</title>
-        <link rel="icon" type="image/png" href="https://i.postimg.cc/GhrPPLcL/DB01-F69-ABC616-DD01-A2297814-D460-ECC.jpg">
+        <title>若磷酸根的搏客</title>
         <style>
             * {
                 margin: 0;
@@ -14,125 +13,275 @@
                 box-sizing: border-box;
             }
             body {
+                font-family: "等线";
+                /* font-style: italic; */
+                overflow-x: hidden;
+            }
+            /* 芝士导航栏容器 */
+            .navbar {
                 display: flex;
-                flex-direction: column;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
-                min-height: 100vh;
-                background: #222;
+                background-color: #4368EF; /* #0085DD */
+                color: white;
+                padding: 1rem 2rem;
             }
-            .container {
+            /* Logo样式 */
+            .navbar-brand {
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+            /* Links' List (链接列表 */
+            .navbar-links {
                 display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
+                list-style: none;
             }
-            .loading {
+            .navbar-links li {
+                margin-left: 2rem;
+            }
+            .navbar-links a {
+                color: white;
+                text-decoration: none;
+                font-size: 1.1rem;
+                transition: color 0.4s;
+            }
+            .navbar-links a:hover {
+                color: #ACAF50;
+            }
+            /* 菜单按钮 */
+            .navbar-toggle {
+                display: none;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            .toggle-icon {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: white;
                 position: relative;
-                display: flex;
-                gap: 15px;
-            }
-            .loading span {
-                position: relative;
-                width: 5px;
-                height: 20px;
-            }
-            .loading span::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                animation: animate 8s linear infinite;
-                animation-delay: calc(var(--i) * 0.1s);
-            }
-            @keyframes animate {
-                0% {
-                    background: #c21f30;
-                    box-shadow: 0 0 5px #c21f30,
-                    0 0 15px #c21f30,
-                    0 0 30px #c21f30,
-                    0 0 50px #c21f30;
-                    rotate: 0deg;
-                }
-                20% {
-                    background: #c21f30;
-                    box-shadow: 0 0 5px #c21f30,
-                    0 0 15px #c21f30,
-                    0 0 30px #c21f30,
-                    0 0 50px #c21f30;
-                    rotate: 0deg;
-                }
-                40% {
-                    background: #c21f30;
-                    box-shadow: 0 0 5px #c21f30,
-                    0 0 15px #c21f30,
-                    0 0 30px #c21f30,
-                    0 0 50px #c21f30;
-                    rotate: 90deg;
-                    transform-origin: bottom;
-                    filter: hue-rotate(0deg);
-                }
-                80% {
-                    background: #c21f30;
-                    box-shadow: 0 0 5px #c21f30,
-                    0 0 15px #c21f30,
-                    0 0 30px #c21f30,
-                    0 0 50px #c21f30;
-                    rotate: 90deg;
-                    transform-origin: bottom;
-                    filter: hue-rotate(360deg);
-                }
-                90% {
-                    background: #222;
-                    box-shadow: none;
-                    rotate: 0deg;
-                }
-                90.1%, 100% {
-                    background: #222;
-                    box-shadow: none;
-                }
             }
 
-            .t {
-                font-family: "等线";
-                color: #fff;
-                opacity: 0.8;
-                size: 5px;
+            .toggle-icon::before
+            .toggle-icon::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: white;
+                left: 0;
+            }
+            .toggle-icon::before {
+                top: -8px;
+            }
+            .toggle-icon::after {
+                bottom: -8px;
+            }
+            
+            /* 移动端响应式设计 */
+            @media (max-width: 768px) {
+                .navbar {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 1rem;
+                }
+                .navbar-links {
+                    display: none;
+                    flex-direction: column;
+                    width: 100%;
+                    margin-top: 1rem;
+                }
+                .navbar-links li {
+                    margin: 0;
+                    padding: 0.5rem 0;
+                    border-top: 1px solid rgba(255,255,255,0.1);
+                }
+                .navbar-links a {
+                    display: block;
+                    padding: 0.5rem 0;
+                }
+                .navbar-toggle {
+                    display: block;
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                }
+
+                .navbar-links.active {
+                    display: flex;
+                }
+
+            }
+
+            /* 侧边栏容器 */
+            .container {
+                display: flex;
+                min-height: 100vh;
+            }
+
+            .siderbar {
+                width: 250px;
+                background-color: #F5F5F5;
+                color: white;
+                transition: all 0.4s ease;
+                position: relative;
+            }
+            .siderbar-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                background-color: #0085DD; /* #0085FF */
+            }
+            .siderbar-header h2 {
+                font-size: 1.2rem;
                 margin: 0;
-                padding: 0;
-                text-align: center;
+            }
+            .siderbar-toggle {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 5px;
+            }
+            .siderbar-menu {
+                list-style: none;
+            }
+            .siderbar-menu li {
+                padding: 10px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                transition: background-color 0.3s;
+            }
+            .siderbar-menu li:hover {
+                background-color: #F1F1F1;
+            }
+            .siderbar-menu a {
+                color: black;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+            }
+            .siderbar-menu .icon {
+                margin-right: 10px;
+                font-size: 1.2rem;
+            }
+
+            /* 网页主内容样式 */
+            .main-content {
+                flex: 1;
+                padding: 20px;
+                background-color: #FAFAFA;
+            }
+                /* 折叠状态 样式 */
+            .siderbar.collapsed {
+                width: 70px;
+            }
+            .siderbar.collapsed .text {
+                display: none;
+            }
+            .siderbar.collapsed .siderbar-header {
+                justify-content: center;
+            }
+            .siderbar.collapsed .siderbar-header h2 {
+                display: none;
+            }
+            .siderbar.collapsed .siderbar-menu a{
+                justify-content: center;   
+            }
+            .siderbar.collapsed .icon {
+                margin-right: 0;
+                font-size: 1.5rem;
+            }
+
+            a {
+                font-size: 1rem;
+                text-decoration: none;  /* 👍 */
+            }
+
+            p {
+                font-size: 1.1rem;
+            }
+
+            .abc {
+                font-size: 1rem;
+                font-weight: 1000;
+            }
+            .abc-a {
+                font-size: 0.9rem;
+                font-weight: 2000;
+                color: #4368EF;
+            }
+
+            .h1a {
+                font-weight: 2000;
+                color: #4368EF;
+            }
+
+            .hf {
+                font-size: 0.7rem;
             }
         </style>
     </head>
     <body>
+        <nav class="navbar">
+            <div class="navbar-brand">窝的个入搏客 (ฅ´ω`ฅ)</div>
+            <button class="navbar-toggle" aria-label="menu">
+                <span class="toggle-icon"></span>
+            </button>
+            <ul class="navbar-links">
+                <li><a href="https://b23.tv/ck13m6p">注册/登录</a></li>
+                <!-- <li><a href="#message">消息</a></li> -->
+                <li><a href="https://qm.qq.com/q/1Lpn0oJGQ8">联系铸波qwq</a></li>
+                <!-- <li><a href="#contact">联系我们</a></li> 这个目前暂时用不到 呃 -->
+                <li><a href="https://b23.tv/wyKK08f"><span class="hf">洪峰，我。喜欢你、（非常小声！）</span></a></li>
+            </ul>
+        </nav>
+
         <div class="container">
-            <div class="loading">
-                <span style="--i:1;"></span>
-                <span style="--i:2;"></span>
-                <span style="--i:3;"></span>
-                <span style="--i:4;"></span>
-                <span style="--i:5;"></span>
-                <span style="--i:6;"></span>
-                <span style="--i:7;"></span>
-                <span style="--i:8;"></span>
-                <span style="--i:9;"></span>
-                <span style="--i:10;"></span>
-                <span style="--i:11;"></span>
-                <span style="--i:12;"></span>
-                <span style="--i:13;"></span>
-                <span style="--i:14;"></span>
-                <span style="--i:15;"></span>
-                <span style="--i:16;"></span>
-                <span style="--i:17;"></span>
-                <span style="--i:18;"></span>
-                <span style="--i:19;"></span>
-                <span style="--i:20;"></span>
-                <span style="--i:21;"></span>
-                <span style="--i:22;"></span>
-                <span style="--i:23;"></span>
-                <span style="--i:24;"></span>
-                <span style="--i:25;"></span>
-            </div>
-            <a class="t" href="https://b23.tv/xgjnNcV">Bilibili: 若磷酸根</a>
+            <aside class="siderbar">
+                <div class="siderbar-header">
+                    <h2>莱单</h2>
+                    <button class="siderbar-toggle">☰</button>
+                </div>
+
+                <ul class="siderbar-menu">
+                    <li><a href="https://b23.tv/wVYScdy"><span class="icon">🏠</span><span class="text">查看我的空间</span></a></li>
+                    <li><a href="https://b23.tv/bMgnB7E"><span class="icon">🎞</span><span class="text">秒赤最新视频</span></a></li>
+                    <li><a href="#"><span class="icon">🀄</span><span class="text">扩列 q3293275512</span></a></li>
+                    <li><a href="#"><span class="icon">❤</span><span class="text">啊啊啊洪峰窝喜欢你！！！QAQ泥就像春日暖阳照亮我前行的路！</span></a></li>
+                </ul>
+            </aside>
+
+            <main class="main-content">
+                <h1>欢迎来到 <span class="h1a">@若磷酸根</span> 的个人博客！</h1>
+                <p><span class="abc">PS: 鼠标左键<a class="abc-a" href="https://b23.tv/wVYScdy">此处</a>跳转至我的B站主页。记得回来</span><br />其实我是一只刚满10岁的兽兽，假装成熟真的好累口牙 、(-.-)、五百五十五😭😭</p>
+                <img src="pic.png" alt="Un picture related to YELLOW. (ˆˇˆ)" style="max-height: 50vh"></img>
+            </main>
         </div>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const toggleButton = document.querySelector('.navbar-toggle');
+                const navbarLinks = document.querySelector('.navbar-links');
+
+                toggleButton.addEventListener('click', function() {
+                    navbarLinks.classList.toggle('active');
+                })
+
+                const navLinks = document.querySelectorAll('.navbar-links a');
+                navLInks.forEach(link ==> {
+                    link.addEventListener('click', function() {
+                        if (window.innerWidth <= 768) {
+                            navbarLinks.classList.remove('active');
+                        }
+                    })
+                })
+            })
+        </script>
     </body>
 </html>
